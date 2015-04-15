@@ -84,9 +84,9 @@ MessageCenterModule.
   directive('mcMessages', ['$rootScope', 'messageCenterService', function ($rootScope, messageCenterService) {
     /*jshint multistr: true */
     var templateString = '\
-    <div id="mc-messages-wrapper">\
-      <div class="alert alert-{{ message.type }} {{ animation }}" ng-repeat="message in mcMessages">\
-        <a class="close" ng-click="message.close();" data-dismiss="alert" aria-hidden="true">&times;</a>\
+    <div id="mc-messages-wrapper" class="flash">\
+      <div class="alert alert--{{ message.type }} {{ animation }}" ng-repeat="message in mcMessages">\
+        <a class="flash__close" ng-click="message.close();" data-dismiss="alert" aria-hidden="true">&times;</a>\
         <span ng-switch on="message.html">\
         <span ng-switch-when="true">\
           <span ng-bind-html="message.message"></span>\
@@ -114,7 +114,7 @@ MessageCenterModule.
         if (messageCenterService.offlistener === undefined) {
           messageCenterService.offlistener = $rootScope.$on('$locationChangeSuccess', changeReaction);
         }
-        scope.animation = attrs.animation || 'fade in';
+        scope.animation = attrs.animation || 'fadeIn';
       }
     };
   }]);
